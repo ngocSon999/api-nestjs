@@ -3,10 +3,10 @@ import { DatabaseMysqlModule } from '../../databases/mysql/module';
 import { bookProviders } from './providers';
 import { BookService } from './service';
 import { BookController } from './controller';
-import { AuthModule } from '../auth/module';
+import { AuthorModule } from '../author/module';
 
 @Module({
-  imports: [DatabaseMysqlModule, AuthModule],
+  imports: [DatabaseMysqlModule, AuthorModule],
   providers: [...bookProviders, BookService],
   controllers: [BookController],
 })

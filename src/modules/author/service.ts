@@ -1,31 +1,31 @@
-import { Injectable, Inject, HttpException, HttpStatus } from "@nestjs/common";
+import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { Auth } from '../../databases/mysql/entity/auth.entity';
+import { Author } from '../../databases/mysql/entity/author.entity';
 
 @Injectable()
-export class AuthService {
+export class AuthorService {
   constructor(
-    @Inject('AUTH_REPOSITORY')
-    private authRepository: Repository<Auth>,
+    @Inject('AUTHOR_REPOSITORY')
+    private authRepository: Repository<Author>,
   ) {}
 
-  async findAll(): Promise<Auth[]> {
+  async findAll(): Promise<Author[]> {
     return this.authRepository.find();
   }
-  async getAuthWithBooks(authId: number): Promise<Auth> {
+  async getAuthWithBooks(authorId: number): Promise<Author> {
     return await this.authRepository.findOne({
-      where: { id: authId },
+      where: { id: authorId },
       relations: ['books'], // Liên kết với books
     });
   }
-  async getAllAuthWithBooks(): Promise<Auth[]> {
+  async getAllAuthWithBooks(): Promise<Author[]> {
     return await this.authRepository.find({
       relations: ['books'], // Liên kết với bảng books
     });
   }
-  async create(authDto: Auth): Promise<Auth> {
+  async create(authorDto: Author): Promise<Author> {
     try {
-      const newAuth = this.authRepository.create(authDto);
+      const newAuth = this.authRepository.create(authorDto);
       return await this.authRepository.save(newAuth);
     } catch (error: any) {
       if (error?.code === 'ER_DUP_ENTRY') {

@@ -1,11 +1,6 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  ManyToOne,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { IsNotEmpty } from 'class-validator';
-import { Auth } from './auth.entity';
+import { Author } from './author.entity';
 
 @Entity()
 export class Book {
@@ -18,7 +13,7 @@ export class Book {
 
   @IsNotEmpty({ message: 'name is required' })
   @Column('int')
-  authId: number;
+  authorId: number;
 
   @Column('text')
   description: string;
@@ -27,6 +22,6 @@ export class Book {
   @Column('int')
   price: number;
 
-  @ManyToOne(() => Auth, (auth) => auth.books)
-  auth: Auth;
+  @ManyToOne(() => Author, (author) => author.books)
+  author: Author;
 }

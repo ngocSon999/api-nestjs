@@ -8,7 +8,8 @@ import { UserModule } from './modules/user/module';
 import { CategoryModule } from './modules/category/module';
 import { BookModule } from './modules/book/module';
 import { DatabaseMysqlModule } from './databases/mysql/module';
-import { AuthModule } from './modules/auth/module';
+import { AuthorModule } from './modules/author/module';
+import { UsersModule } from './modules/users/module';
 
 @Module({
   imports: [
@@ -21,9 +22,10 @@ import { AuthModule } from './modules/auth/module';
     MongoDatabaseModule,
     DatabaseMysqlModule,
     UserModule,
+    UsersModule,
     CategoryModule,
     BookModule,
-    AuthModule,
+    AuthorModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,27 +1,27 @@
 import { Injectable, Inject, HttpException, HttpStatus } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { Book } from '../../databases/mysql/entity/book.entity';
-import { Auth } from '../../databases/mysql/entity/auth.entity';
+import { Author } from '../../databases/mysql/entity/author.entity';
 
 @Injectable()
 export class BookService {
   constructor(
     @Inject('BOOK_REPOSITORY')
     private bookRepository: Repository<Book>,
-    @Inject('AUTH_REPOSITORY') private authRepository: Repository<Auth>,
+    @Inject('AUTHOR_REPOSITORY') private authorRepository: Repository<Author>,
   ) {}
 
   async findAll(): Promise<Book[]> {
     return this.bookRepository.find({
-      relations: ['auth'],
+      relations: ['author'],
     });
   }
   async create(book: Book): Promise<Book> {
-    const auth = await this.authRepository.findOne({
-      where: { id: book.authId },
+    const author = await this.authorRepository.findOne({
+      where: { id: book.authorId },
     });
 
-    if (!auth) {
+    if (!author) {
       throw new HttpException('Auth not found', HttpStatus.BAD_REQUEST);
     }
 

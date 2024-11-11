@@ -3,7 +3,7 @@ import { IsNotEmpty, MaxLength } from 'class-validator';
 import { Book } from './book.entity';
 
 @Entity()
-export class Auth {
+export class Author {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -15,6 +15,6 @@ export class Auth {
   @Column('text')
   description: string;
 
-  @OneToMany(() => Book, (book) => book.auth)
+  @OneToMany(() => Book, (book) => book.author)
   books: Book[];
 }
