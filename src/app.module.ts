@@ -10,6 +10,7 @@ import { BookModule } from './modules/book/module';
 import { DatabaseMysqlModule } from './databases/mysql/module';
 import { AuthorModule } from './modules/author/module';
 import { UsersModule } from './modules/users/module';
+import { AuthModule } from './modules/auth/module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { UsersModule } from './modules/users/module';
     CategoryModule,
     BookModule,
     AuthorModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

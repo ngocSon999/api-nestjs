@@ -9,5 +9,6 @@ import { databaseProviders } from '../../databases/mysql/providers';
   imports: [DatabaseMysqlModule],
   providers: [...userProviders, ...databaseProviders, UserService],
   controllers: [UserController],
+  exports: [UserService],
 })
 export class UsersModule {}
